@@ -39,7 +39,7 @@ def generate_ts_temperature():
     return jsonify(data=df.to_dict(orient='records'))
 
 
-@generate_router.route('/time-series/geo-connections', methods=['GET'])
+@generate_router.route('/time-series/network-traffic', methods=['GET'])
 def generate_connections():
     start_date = datetime.datetime.utcnow() - datetime.timedelta(days=90)
     end_date = datetime.datetime.utcnow()
