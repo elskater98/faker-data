@@ -1,4 +1,7 @@
 FROM python:3.10-alpine3.19
+LABEL org.opencontainers.image.source=https://github.com/elskater98/fake-data
+LABEL org.opencontainers.image.description="Fake Data Project"
+LABEL org.opencontainers.image.licenses=MIT
 ARG FLASK_ENV=production
 
 ENV FLASK_ENV=${FLASK_ENV}
