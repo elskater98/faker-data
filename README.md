@@ -12,7 +12,11 @@ network connections, etc.
 ### 2. Docker Image
 
     docker pull rghcr.io/elskater98/fake-data
-    docker run -it --rm -p 8080:8080 rghcr.io/elskater98/fake-data
+    docker run -it --rm -p 8080:8080 -e FLASK_DEBUG=1 -e FAKER_I18N=es_ES rghcr.io/elskater98/fake-data:latest
+
+## Env. Variables
+    FAKER_I18N = es_ES # 
+    FLASK_DEBUG = 1
 
 ## Endpoints
 

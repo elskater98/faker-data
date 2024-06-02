@@ -1,4 +1,5 @@
 import datetime
+import os
 
 import numpy as np
 from flask import Blueprint, jsonify, request
@@ -9,8 +10,8 @@ import pandas as pd
 from faker import Faker
 from faker.providers import internet, geo, profile, phone_number
 
-fake = Faker()
-fake.name()
+# Fake Instance
+fake = Faker(os.getenv('FAKER_I18N', 'es_ES'))
 fake.add_provider(internet)
 fake.add_provider(geo)
 fake.add_provider(profile)
@@ -18,7 +19,7 @@ fake.add_provider(phone_number)
 
 
 @generate_router.route('/time-series/temperature', methods=['GET'])
-def generate_ts_temperature():
+def generate_temperature():
     start_date = request.args.get('start_date') if request.args.get(
         'start_date') else datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
 
