@@ -2,7 +2,8 @@ from flask import Flask
 from flask_cors import CORS
 
 from error_handler import handle_unexpected_error
-from routes.generate import generate_router
+from routes.time_series import time_series_router
+from routes.static import static_router
 
 
 def create_app():
@@ -13,7 +14,8 @@ def create_app():
     app.register_error_handler(Exception, handle_unexpected_error)
 
     # Routers
-    app.register_blueprint(generate_router, url_prefix='/generate')
+    app.register_blueprint(time_series_router, url_prefix='/time-series')
+    app.register_blueprint(static_router, url_prefix='/static-data')
 
     return app
 
