@@ -4,6 +4,7 @@ from flask_cors import CORS
 from error_handler import handle_unexpected_error
 from routes.time_series import time_series_router
 from routes.static import static_router
+from routes.custom import custom_router
 
 
 def create_app():
@@ -16,6 +17,7 @@ def create_app():
     # Routers
     app.register_blueprint(time_series_router, url_prefix='/time-series')
     app.register_blueprint(static_router, url_prefix='/static-data')
+    app.register_blueprint(custom_router, url_prefix='/custom-data')
 
     return app
 

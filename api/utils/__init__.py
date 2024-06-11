@@ -1,7 +1,13 @@
+import random
+import string
 from datetime import datetime, timedelta
 
 import numpy as np
 import pandas as pd
+
+from api.utils.faker_singleton import SingletonFaker
+
+s = SingletonFaker()
 
 
 def simulate_day_temperature(start_date, days, interval=5, base_temp=20, daily_variation=10, trend_increase=0.05,
@@ -119,3 +125,20 @@ def add_random_nulls(df, column_name, null_probability=0.01):
     mask = np.random.rand(len(df)) < null_probability
     df_with_nulls.loc[mask, column_name] = np.nan
     return df_with_nulls
+
+
+def get_provider_value(s: SingletonFaker, value, extra_params):
+    if hasattr(s.faker, value):
+        fn = getattr(s.faker, value)
+        return fn(**extra_params) if extra_params else fn()
+    else:
+        return None
+        # raise NotImplemented(f"Provider value not implemented {value}")
+
+
+def generate_custom_value(fields: dict):
+    print(fields)
+    record = {}
+    for k, v in fields.items():
+        record.update({k: get_provider_value(s=s, value=v.get('method'), extra_params=v.get('extra_params'))})
+    return record

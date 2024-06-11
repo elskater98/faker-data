@@ -1,14 +1,12 @@
 import datetime
 
+import pandas as pd
 from flask import Blueprint, jsonify, request
 
-time_series_router = Blueprint('time_series', __name__)
-import pandas as pd
-
+from api.utils import simulate_day_temperature, simulate_energy_consumption, add_noise
 from api.utils.faker_singleton import SingletonFaker
 
-from api.utils import simulate_day_temperature, simulate_energy_consumption, add_noise
-
+time_series_router = Blueprint('time_series', __name__)
 s = SingletonFaker()
 
 
