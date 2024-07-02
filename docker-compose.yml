@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgresql:
+    image: postgres:latest
+    restart: on-failure
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=fake_data_db
+    volumes:
+      - 'postgresql_v:/var/lib/postgresql/data'
+      - './init-db/postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql'
+
+volumes:
+  postgresql_v:
