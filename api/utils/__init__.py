@@ -1,5 +1,3 @@
-import random
-import string
 from datetime import datetime, timedelta
 
 import numpy as np
@@ -127,17 +125,20 @@ def add_random_nulls(df, column_name, null_probability=0.01):
     return df_with_nulls
 
 
+
+def check_provider():pass
+
 def get_provider_value(s: SingletonFaker, value, extra_params):
-    if hasattr(s.faker, value):
-        fn = getattr(s.faker, value)
-        return fn(**extra_params) if extra_params else fn()
-    else:
-        return None
+    # TODO: VALIDATE PROVIDERS USING
+    # if hasattr(s.faker, value):
+    fn = getattr(s.faker, value)
+    return fn(**extra_params) if extra_params else fn()
+    # else:
+    #     return None
         # raise NotImplemented(f"Provider value not implemented {value}")
 
 
 def generate_custom_value(fields: dict):
-    print(fields)
     record = {}
     for k, v in fields.items():
         record.update({k: get_provider_value(s=s, value=v.get('method'), extra_params=v.get('extra_params'))})

@@ -2,7 +2,7 @@ import os
 
 from faker import Faker
 
-from api.utils.custom_providers import medical_professions_provider, payment_method_provider, record_locator_provider
+from api.utils.custom_providers import payment_method_provider, delivery_status_provider
 
 
 class SingletonMeta(type):
@@ -25,9 +25,8 @@ class SingletonFaker(metaclass=SingletonMeta):
 
     def __init__(self):
         self.faker = Faker(os.getenv('FAKER_I18N', 'en_US'))
-        self.faker.add_provider(medical_professions_provider)
         self.faker.add_provider(payment_method_provider)
-        self.faker.add_provider(record_locator_provider)
+        self.faker.add_provider(delivery_status_provider)
 
     def set_locale(self, locale):
         """
