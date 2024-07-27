@@ -35,9 +35,9 @@ def create_app():
     app.register_error_handler(Exception, handle_unexpected_error)
 
     # Routers
-    app.register_blueprint(time_series_router, url_prefix=f'api/{API_VERSION}/time-series')
-    app.register_blueprint(static_router, url_prefix=f'api/{API_VERSION}/static-data')
-    app.register_blueprint(custom_router, url_prefix=f'api/{API_VERSION}/custom-data')
+    app.register_blueprint(time_series_router, url_prefix=f'/api/{API_VERSION}/time-series')
+    app.register_blueprint(static_router, url_prefix=f'/api/{API_VERSION}/static-data')
+    app.register_blueprint(custom_router, url_prefix=f'/api/{API_VERSION}/custom-data')
 
     return app
 

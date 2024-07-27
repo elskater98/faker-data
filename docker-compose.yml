@@ -8,7 +8,7 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=fake_data_db
+      - POSTGRES_DB=fakerdata
     volumes:
       - 'postgresql_v:/var/lib/postgresql/data'
       - './init-db/postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql'
